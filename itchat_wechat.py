@@ -37,16 +37,18 @@ def createImg():
     numLine = int(640 / width)
 
     for i in imgs:
-        img = Image.open("img/" + i)
+        try:
+            img = Image.open("img/" + i)
         # 缩小图片
-        img = img.resize((width, width), Image.ANTIALIAS)
+            img = img.resize((width, width), Image.ANTIALIAS)
         # 拼接图片，一行排满，换行拼接
-        newImg.paste(img, (x * width, y * width))
-        x += 1
-        if x >= numLine:
-            x = 0
-            y += 1
-
+            newImg.paste(img, (x * width, y * width))
+            x += 1
+            if x >= numLine:
+                x = 0
+                y += 1
+        except IOError:
+            print("img/ %s can not open"%(i))
     newImg.save("all.png")
 
 
