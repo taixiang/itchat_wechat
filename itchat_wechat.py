@@ -67,7 +67,11 @@ def getSex():
     # 柱状图展示
     for i, key in enumerate(sex):
         plt.bar(key, sex[key])
-    plt.show()
+    plt.savefig("getsex.png") #保存图片
+    plt.ion()
+    plt.pause(5)
+    plt.close() #图片显示5s，之后关闭
+    #plt.show() #不建议用show，show是堵塞式
 
 
 # 获取个性签名
